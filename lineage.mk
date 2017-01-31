@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/coolpad/CP8298_I00/full_CP8298_I00.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+$(call inherit-product, device/coolpad/CP8298_I00/device.mk)
 
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
