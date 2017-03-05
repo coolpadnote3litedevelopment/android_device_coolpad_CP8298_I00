@@ -1,0 +1,2 @@
+allow vold mobicore:unix_stream_socket connectto;
+allow vold mobicore_user_device:chr_file rw_file_perms;
