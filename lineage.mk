@@ -14,10 +14,10 @@
 
 $(call inherit-product, device/coolpad/CP8298_I00/full_CP8298_I00.mk)
 
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 
-PRODUCT_NAME := cm_CP8298_I00
+PRODUCT_NAME := lineage_CP8298_I00
 BOARD_VENDOR := coolpad
 PRODUCT_DEVICE := CP8298_I00
 

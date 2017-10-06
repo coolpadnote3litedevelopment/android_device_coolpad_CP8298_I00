@@ -1,3 +1,3 @@
-add_lunch_combo cm_CP8298_I00-user
-add_lunch_combo cm_CP8298_I00-userdebug
-add_lunch_combo cm_CP8298_I00-eng
+add_lunch_combo lineage_CP8298_I00-user
+add_lunch_combo lineage_CP8298_I00-userdebug
+add_lunch_combo lineage_CP8298_I00-eng
