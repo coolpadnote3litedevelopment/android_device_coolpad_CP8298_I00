@@ -45,6 +45,8 @@ static vendor_set_callbacks_t vendor_set_callbacks;
 static pthread_mutex_t ops_lock = PTHREAD_MUTEX_INITIALIZER;
 
 static camera_notify_callback client_notify_cb;
+static camera_request_memory client_get_memory;
+static void *client_user;
 static pthread_mutex_t notify_lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t notify_cond = PTHREAD_COND_INITIALIZER;
 static struct notify_msg *notify_head, *notify_tail;
@@ -103,6 +105,12 @@ static void wrapper_notify_cb(int32_t msg_type, int32_t ext1, int32_t ext2,
     pthread_mutex_unlock(&notify_lock);
 }
 
+static camera_memory_t *wrapper_get_memory(int fd, size_t buf_size,
+        unsigned int num_bufs, void *user __unused)
+{
+    return client_get_memory(fd, buf_size, num_bufs, client_user);
+}
+
 static void wrapper_set_callbacks(struct camera_device *dev,
         camera_notify_callback notify_cb, camera_data_callback data_cb,
         camera_data_timestamp_callback data_cb_timestamp,
@@ -110,13 +118,15 @@ static void wrapper_set_callbacks(struct camera_device *dev,
 {
     pthread_mutex_lock(&notify_lock);
     client_notify_cb = notify_cb;
+    client_get_memory = get_memory;
+    client_user = user;
     if (!notify_thread_started &&
             !pthread_create(&notify_thread, NULL, notify_loop, NULL))
         notify_thread_started = 1;
     pthread_mutex_unlock(&notify_lock);
 
     vendor_set_callbacks(dev, notify_cb ? wrapper_notify_cb : NULL, data_cb,
-            data_cb_timestamp, get_memory, NULL, user);
+            data_cb_timestamp, get_memory ? wrapper_get_memory : NULL, NULL, user);
 }
 
 static void wrap_device(hw_device_t *device)
