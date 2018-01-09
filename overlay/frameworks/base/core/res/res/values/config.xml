@@ -21,9 +21,6 @@
          autodetected from the Configuration. -->
     <bool name="config_showNavigationBar">false</bool>
 
-    <!-- Hardware keys: 1 (home) + 2 (back) + 16 (app switch) + 64 (volume rocker) -->
-    <integer name="config_deviceHardwareKeys">83</integer>
-
     <bool name="config_automatic_brightness_available">true</bool>
 
     <integer-array name="config_autoBrightnessLevels">
