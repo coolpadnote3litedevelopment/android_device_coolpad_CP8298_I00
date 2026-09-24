@@ -1,6 +1,10 @@
 # RIL
 ro.telephony.default_network=9
 
+# Dalvik
+dalvik.vm.heapgrowthlimit=256m
+dalvik.vm.heapsize=512m
+
 # Graphics
 ro.sf.lcd_density=320
 
