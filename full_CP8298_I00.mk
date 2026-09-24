@@ -15,11 +15,11 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from porridge
-$(call inherit-product, device/wileyfox/porridge/device.mk)
+# Inherit from CP8298_I00
+$(call inherit-product, device/coolpad/CP8298_I00/device.mk)
 
-PRODUCT_DEVICE := porridge
-PRODUCT_NAME := full_porridge
-PRODUCT_BRAND := wileyfox
-PRODUCT_MODEL := PORRIDGE
-PRODUCT_MANUFACTURER := wileyfox
+PRODUCT_DEVICE := CP8298_I00
+PRODUCT_NAME := full_CP8298_I00
+PRODUCT_BRAND := Coolpad
+PRODUCT_MODEL := CP8298_I00
+PRODUCT_MANUFACTURER := Coolpad

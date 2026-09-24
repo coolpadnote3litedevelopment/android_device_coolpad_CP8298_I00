@@ -1,10 +1,14 @@
 [
   {
-    "repository": "android_device_cyanogen_mt6735-common",
-    "target_path": "device/cyanogen/mt6735-common"
+    "remote": "github",
+    "repository": "coolpadnote3litedevelopment/android_device_coolpad_mt6735-common",
+    "target_path": "device/coolpad/mt6735-common",
+    "branch": "cm-13.0"
   },
   {
-    "repository": "android_kernel_cyanogen_mt6735",
-    "target_path": "kernel/cyanogen/mt6735"
+    "remote": "github",
+    "repository": "coolpadnote3litedevelopment/android_kernel_coolpad_CP8298_I00",
+    "target_path": "kernel/coolpad/CP8298_I00",
+    "branch": "cm-13.1"
   }
 ]

@@ -13,10 +13,10 @@
 # limitations under the License.
 #
 
-VENDOR_BLOBS ?= vendor/wileyfox/porridge/porridge-vendor.mk
+VENDOR_BLOBS ?= vendor/coolpad/CP8298_I00/CP8298_I00-vendor.mk
 $(call inherit-product-if-exists, $(VENDOR_BLOBS))
 
-MTK_PROJECT_CONFIG ?= device/wileyfox/porridge/ProjectConfig.mk
+MTK_PROJECT_CONFIG ?= device/coolpad/CP8298_I00/ProjectConfig.mk
 include $(MTK_PROJECT_CONFIG)
 
 # Charger and USB
@@ -29,7 +29,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
-    $(LOCAL_PATH)/rootdir/fstab.porridge:root/fstab.porridge
+    $(LOCAL_PATH)/rootdir/fstab.CP8298_I00:root/fstab.CP8298_I00
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -57,9 +57,6 @@ PRODUCT_COPY_FILES += \
 # Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-
-# This one is set by init
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
@@ -97,4 +94,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.mediatek.chip_ver=$(MTK_CHIP_VER)
 
 # Inherit the rest from mt6735-common
-$(call inherit-product, device/cyanogen/mt6735-common/mt6735.mk)
+$(call inherit-product, device/coolpad/mt6735-common/mt6735.mk)

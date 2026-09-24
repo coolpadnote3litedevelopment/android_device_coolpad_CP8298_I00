@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export DEVICE=porridge
-export VENDOR=wileyfox
+export DEVICE=CP8298_I00
+export VENDOR=coolpad
 
 if [ $# -eq 0 ]; then
   SRC=adb

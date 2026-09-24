@@ -1,5 +1,3 @@
-import /init.variant.${ro.boot.cmv}.rc
-
 on boot
     # Enable KSM
     write /sys/kernel/mm/ksm/pages_to_scan 100
@@ -16,5 +14,5 @@ on boot
     chmod 664 /sys/devices/soc/soc:touch/enable_gesture
 
 on post-fs
-    swapon_all /fstab.porridge
+    swapon_all /fstab.CP8298_I00
     write /proc/sys/vm/page-cluster 0

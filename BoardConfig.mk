@@ -15,11 +15,11 @@
 
 TARGET_BOARD_PLATFORM := mt6735
 
-DEVICE_PATH := device/wileyfox/porridge
+DEVICE_PATH := device/coolpad/CP8298_I00
 
 MTK_PROJECT_CONFIG ?= $(DEVICE_PATH)/ProjectConfig.mk
 include $(MTK_PROJECT_CONFIG)
-include device/cyanogen/mt6735-common/BoardConfigCommon.mk
+include device/coolpad/mt6735-common/BoardConfigCommon.mk
 
 MTK_INTERNAL_CDEFS := $(foreach t,$(AUTO_ADD_GLOBAL_DEFINE_BY_NAME),$(if $(filter-out no NO none NONE false FALSE,$($(t))),-D$(t)))
 MTK_INTERNAL_CDEFS += $(foreach t,$(AUTO_ADD_GLOBAL_DEFINE_BY_VALUE),$(if $(filter-out no NO none NONE false FALSE,$($(t))),$(foreach v,$(shell echo $($(t)) | tr '[a-z]' '[A-Z]'),-D$(v))))
@@ -35,8 +35,6 @@ TARGET_BOOTLOADER_BOARD_NAME := PORRIDGE
 BOARD_SYSTEMIMAGE_PARTITION_SIZE:=2558525440
 BOARD_CACHEIMAGE_PARTITION_SIZE:=419430400
 BOARD_USERDATAIMAGE_PARTITION_SIZE:=4386701312
-
-TARGET_INIT_VENDOR_LIB := libinit_porridge
 
 TARGET_TAP_TO_WAKE_NODE := /sys/devices/soc/soc:touch/enable_gesture
 

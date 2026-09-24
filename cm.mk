@@ -12,21 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/wileyfox/porridge/full_porridge.mk)
+$(call inherit-product, device/coolpad/CP8298_I00/full_CP8298_I00.mk)
 
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 
-PRODUCT_NAME := cm_porridge
-BOARD_VENDOR := wileyfox
-PRODUCT_DEVICE := porridge
+PRODUCT_NAME := cm_CP8298_I00
+BOARD_VENDOR := coolpad
+PRODUCT_DEVICE := CP8298_I00
 
-PRODUCT_GMS_CLIENTID_BASE := android-wileyfox
+PRODUCT_GMS_CLIENTID_BASE := android-coolpad
 
-PRODUCT_MANUFACTURER := Wileyfox
-PRODUCT_MODEL := Wileyfox Spark
+PRODUCT_MANUFACTURER := Coolpad
+PRODUCT_MODEL := CP8298_I00
 
-PRODUCT_BRAND := Wileyfox
-TARGET_VENDOR := wileyfox
-TARGET_VENDOR_PRODUCT_NAME := Spark
-TARGET_VENDOR_DEVICE_NAME := porridge
+PRODUCT_BRAND := Coolpad
+TARGET_VENDOR := coolpad
+TARGET_VENDOR_PRODUCT_NAME := CP8298_I00
+TARGET_VENDOR_DEVICE_NAME := CP8298_I00
