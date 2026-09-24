@@ -16,7 +16,6 @@ lib{,64}/libmrdump.so
 lib{,64}/librilmtk.so
 lib64/libterservice.so
 lib{,64}/mtk-ril.so
-etc/ecc_list.xml
 etc/firmware/catcher_filter_1_lwg_n.bin
 etc/firmware/dsp_1_lwg_n.bin
 etc/firmware/modem_1_lwg_n.img
@@ -186,7 +185,6 @@ lib{,64}/libvcodec_utility.so
 lib/libvp8dec_sa.ca7.so
 lib/libvp9dec_sa.ca7.so
 lib{,64}/hw/audio.primary.mt6735.so
-etc/audio_param/AudioParamOptions.xml
 
 # Meta Mode
 bin/meta_tst

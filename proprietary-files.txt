@@ -11,7 +11,6 @@ bin/mcDriverDaemon
 lib64/hw/keystore.mt6735.so
 lib64/hw/libMcGatekeeper.so:lib64/hw/gatekeeper.mt6735.so
 lib64/libMcClient.so
-lib64/libMcRegistry.so
 app/mcRegistry/020b0000000000000000000000000000.drbin
 app/mcRegistry/020b0000000000000000000000000000.tlbin
 app/mcRegistry/020f0000000000000000000000000000.drbin
