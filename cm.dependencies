@@ -10,5 +10,11 @@
     "repository": "coolpadnote3litedevelopment/android_kernel_coolpad_CP8298_I00",
     "target_path": "kernel/coolpad/CP8298_I00",
     "branch": "cm-13.1"
+  },
+  {
+    "remote": "github",
+    "repository": "coolpadnote3litedevelopment/proprietary_vendor_coolpad",
+    "target_path": "vendor/coolpad",
+    "branch": "cm-13.0"
   }
 ]
