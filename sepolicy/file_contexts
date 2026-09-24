@@ -4,3 +4,6 @@
 /dev/t-base-tui                 u:object_r:mobicore_tui_device:s0
 /data/app/mcRegistry(/.*)?      u:object_r:mobicore_data_file:s0
 /system/bin/mcDriverDaemon      u:object_r:mobicore_exec:s0
+
+# Camera
+/dev/T2_CAM_CAL_DRV            u:object_r:camera_device:s0
