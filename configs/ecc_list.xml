@@ -11,14 +11,19 @@
     -->
     <EccEntry Ecc="112" Category="0" Condition="1" />
     <EccEntry Ecc="911" Category="0" Condition="1" />
+    <!--
+        YULONG-START zhangqing1@yulong.com 2016.5.19
+        - Add 113/114/115 as ecc always for YUE-NAN require
+        - Modify 118 from ecc only when no sim to ecc always
+    -->
+    <EccEntry Ecc="113" Category="0" Condition="1" />
+    <EccEntry Ecc="114" Category="0" Condition="1" />
+    <EccEntry Ecc="115" Category="0" Condition="1" />
+    <EccEntry Ecc="118" Category="0" Condition="1" />
+    <!-- YULONG-END zhangqing1@yulong.com 2016.5.19 -->
     <EccEntry Ecc="000" Category="0" Condition="0" />
     <EccEntry Ecc="08" Category="0" Condition="0" />
     <EccEntry Ecc="110" Category="0" Condition="0" />
-    <EccEntry Ecc="118" Category="0" Condition="0" />
     <EccEntry Ecc="119" Category="0" Condition="0" />
-    <EccEntry Ecc="999" Category="0" Condition="1" />
-	<EccEntry Ecc="998" Category="0" Condition="1" />
-    <EccEntry Ecc="997" Category="0" Condition="1" /> 
-    <EccEntry Ecc="986" Category="0" Condition="1" />
-	
+    <EccEntry Ecc="999" Category="0" Condition="0" />
 </EccTable>
