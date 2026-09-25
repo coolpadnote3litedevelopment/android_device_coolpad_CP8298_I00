@@ -7,3 +7,6 @@
 
 # Camera
 /dev/T2_CAM_CAL_DRV            u:object_r:camera_device:s0
+
+# Fingerprint
+/sys/devices/fpc_interrupt(/.*)?  u:object_r:sysfs_fingerprint:s0
