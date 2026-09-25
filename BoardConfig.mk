@@ -43,4 +43,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE:=12244746240
 
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
+TARGET_TAP_TO_WAKE_NODE := /sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl
+TARGET_TAP_TO_WAKE_ON := double_click=true
+TARGET_TAP_TO_WAKE_OFF := double_click=false
+
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
