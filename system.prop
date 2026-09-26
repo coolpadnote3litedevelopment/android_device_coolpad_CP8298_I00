@@ -1,6 +1,12 @@
 # RIL
 ro.telephony.default_network=9
 
+# IMS
+persist.mtk.volte.enable=1
+persist.mtk_dynamic_ims_switch=0
+ro.mtk_ims_support=1
+ro.mtk_volte_support=1
+
 # Dalvik
 dalvik.vm.heapgrowthlimit=256m
 dalvik.vm.heapsize=512m

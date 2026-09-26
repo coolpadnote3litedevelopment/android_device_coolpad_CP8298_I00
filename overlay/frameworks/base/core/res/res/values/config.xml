@@ -80,4 +80,7 @@
 
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
+
+    <!-- Whether the device supports VoLTE -->
+    <bool name="config_device_volte_available">true</bool>
 </resources>
