@@ -67,9 +67,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal.off.conf:system/etc/.tp/thermal.off.conf \
     $(LOCAL_PATH)/configs/ht120.mtc:system/etc/.tp/.ht120.mtc
 
-# System Properties
-#PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-#    persist.sys.usb.config=mtp
+# USB
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb
+endif
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
