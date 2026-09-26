@@ -18,6 +18,9 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := CameraWrapper.c
 
+LOCAL_C_INCLUDES := \
+    system/media/camera/include
+
 LOCAL_SHARED_LIBRARIES := \
     libhardware \
     liblog
