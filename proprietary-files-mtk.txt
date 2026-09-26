@@ -133,7 +133,6 @@ lib{,64}/libcam.utils.cpuctrl.so
 lib{,64}/libcam.utils.sensorlistener.so
 lib{,64}/libcam_utils.so
 lib{,64}/libcam.utils.so
-lib{,64}/libcam.utils.so
 lib{,64}/libdngop.so
 lib{,64}/libfeatureiodrv.so
 lib{,64}/libfeatureio.so
