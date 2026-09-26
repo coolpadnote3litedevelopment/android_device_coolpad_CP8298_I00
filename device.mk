@@ -44,6 +44,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_device.xml:system/etc/audio_device.xml
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.mt6735
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
