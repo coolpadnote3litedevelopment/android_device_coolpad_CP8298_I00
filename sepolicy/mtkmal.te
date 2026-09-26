@@ -1,0 +1,16 @@
+type mtkmal, domain;
+type mtkmal_exec, exec_type, file_type;
+
+init_daemon_domain(mtkmal)
+
+allow mtkmal self:capability setuid;
+allow mtkmal devpts:chr_file setattr;
+
+allow mtkmal radio_device:dir rw_dir_perms;
+allow mtkmal radio_device:lnk_file create_file_perms;
+
+set_prop(mtkmal, ctl_volte_prop)
+set_prop(mtkmal, radio_prop)
+unix_socket_connect(mtkmal, mal, mtkmal)
+unix_socket_connect(mtkmal, rild, ril-daemon-mtk)
+unix_socket_connect(mtkmal, volte_imcb, volte_imcb)

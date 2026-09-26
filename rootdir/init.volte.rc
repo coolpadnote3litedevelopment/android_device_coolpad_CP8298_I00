@@ -1,0 +1,40 @@
+service volte_ua /system/bin/volte_ua
+    class core
+    socket volte_ua stream 660 root system
+    user root
+    group system log inet radio net_admin root
+    oneshot
+    disabled
+
+service volte_stack /system/bin/volte_stack
+    class core
+    socket volte_stack stream 660 root system
+    user root
+    group system log inet radio
+    oneshot
+    disabled
+
+service volte_imcb /system/bin/volte_imcb
+    class core
+    socket volte_imsa1 stream 660 root radio
+    socket volte_imsa2 stream 660 root radio
+    socket volte_imsvt1 stream 660 root radio
+    socket volte_imsvt2 stream 660 root radio
+    socket volte_ut stream 660 root radio
+    user system
+    group system log inet radio
+    oneshot
+    disabled
+
+service mal-daemon /system/bin/mtkmal
+    class core
+    socket mal-mfi stream 660 root radio
+    socket volte_imsm stream 660 root radio
+    user root
+    group radio cache inet misc log system wifi
+
+on property:ril.mal=0
+    stop mal-daemon
+
+on property:ril.mal=1
+    start mal-daemon

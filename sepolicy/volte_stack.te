@@ -1,0 +1,9 @@
+type volte_stack, domain;
+type volte_stack_exec, exec_type, file_type;
+
+init_daemon_domain(volte_stack)
+net_domain(volte_stack)
+
+allow volte_stack self:capability { setgid setuid };
+
+unix_socket_connect(volte_stack, volte_stack, volte_stack)

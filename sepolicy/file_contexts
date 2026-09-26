@@ -10,3 +10,16 @@
 
 # Fingerprint
 /sys/devices/fpc_interrupt(/.*)?  u:object_r:sysfs_fingerprint:s0
+
+# VoLTE
+/system/bin/mtkmal              u:object_r:mtkmal_exec:s0
+/system/bin/volte_imcb          u:object_r:volte_imcb_exec:s0
+/system/bin/volte_stack         u:object_r:volte_stack_exec:s0
+/system/bin/volte_ua            u:object_r:volte_ua_exec:s0
+/dev/socket/mal-mfi             u:object_r:mal_socket:s0
+/dev/socket/volte_imsm          u:object_r:mal_socket:s0
+/dev/socket/volte_imsa[12]      u:object_r:volte_imcb_socket:s0
+/dev/socket/volte_imsvt[12]     u:object_r:volte_imcb_socket:s0
+/dev/socket/volte_ut            u:object_r:volte_imcb_socket:s0
+/dev/socket/volte_stack         u:object_r:volte_stack_socket:s0
+/dev/socket/volte_ua            u:object_r:volte_ua_socket:s0

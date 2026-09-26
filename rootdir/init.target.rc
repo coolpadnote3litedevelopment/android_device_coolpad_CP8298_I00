@@ -1,4 +1,5 @@
 import /init.trustonic.rc
+import /init.volte.rc
 
 on post-fs-data
     # Camera

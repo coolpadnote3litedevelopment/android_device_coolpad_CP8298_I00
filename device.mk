@@ -30,6 +30,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
     $(LOCAL_PATH)/rootdir/init.trustonic.rc:root/init.trustonic.rc \
+    $(LOCAL_PATH)/rootdir/init.volte.rc:root/init.volte.rc \
     $(LOCAL_PATH)/rootdir/fstab.CP8298_I00:root/fstab.CP8298_I00
 
 # Permissions

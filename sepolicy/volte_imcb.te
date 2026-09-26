@@ -1,0 +1,8 @@
+type volte_imcb, domain;
+type volte_imcb_exec, exec_type, file_type;
+
+init_daemon_domain(volte_imcb)
+
+allow volte_imcb ccci_device:chr_file rw_file_perms;
+
+unix_socket_connect(volte_imcb, volte_ua, volte_ua)

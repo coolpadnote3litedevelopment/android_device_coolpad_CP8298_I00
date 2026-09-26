@@ -1,2 +1,6 @@
 type mobicore_data_file, file_type, data_file_type;
 type sysfs_fingerprint, fs_type, sysfs_type;
+type mal_socket, file_type;
+type volte_imcb_socket, file_type;
+type volte_stack_socket, file_type;
+type volte_ua_socket, file_type;

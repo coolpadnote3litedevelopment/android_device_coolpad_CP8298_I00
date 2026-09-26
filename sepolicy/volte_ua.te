@@ -1,0 +1,9 @@
+type volte_ua, domain;
+type volte_ua_exec, exec_type, file_type;
+
+init_daemon_domain(volte_ua)
+net_domain(volte_ua)
+
+allow volte_ua self:capability setgid;
+
+unix_socket_connect(volte_ua, volte_stack, volte_stack)
