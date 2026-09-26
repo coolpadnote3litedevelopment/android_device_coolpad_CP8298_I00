@@ -20,6 +20,22 @@ etc/firmware/catcher_filter_1_lwg_n.bin
 etc/firmware/dsp_1_lwg_n.bin
 etc/firmware/modem_1_lwg_n.img
 
+# IMS
+-priv-app/ImsService/ImsService.apk
+bin/mtkmal
+bin/volte_imcb
+bin/volte_stack
+bin/volte_ua
+lib{,64}/libmal_datamngr.so
+lib{,64}/libmal_epdga.so
+lib{,64}/libmal_imsmngr.so
+lib{,64}/libmal_mdmngr.so
+lib{,64}/libmal_nwmngr.so
+lib{,64}/libmal_rds.so
+lib{,64}/libmal_rilproxy.so
+lib{,64}/libmal_simmngr.so
+lib{,64}/volte_imsm.so
+
 # Sensors
 bin/akmd09911
 bin/akmd8963
