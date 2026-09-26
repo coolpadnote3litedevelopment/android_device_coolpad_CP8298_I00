@@ -26,6 +26,7 @@ bin/mtkmal
 bin/volte_imcb
 bin/volte_stack
 bin/volte_ua
+bin/vtservice
 lib{,64}/libmal_datamngr.so
 lib{,64}/libmal_epdga.so
 lib{,64}/libmal_imsmngr.so
@@ -35,6 +36,23 @@ lib{,64}/libmal_rds.so
 lib{,64}/libmal_rilproxy.so
 lib{,64}/libmal_simmngr.so
 lib{,64}/volte_imsm.so
+lib/libamr_wrap.so
+lib/libamrvt.so
+lib/libawb_wrap.so
+lib/libcomutils.so
+lib/libimsma.so
+lib/libimsma_rtp.so
+lib/libimsma_socketwrapper.so
+lib/libmtk_vt_service.so
+lib/libmtk_vt_swip.so
+lib/libmtk_vt_utils.so
+lib/libsink.so
+lib/libsource.so
+lib/libvcodec_cap.so
+lib/libvt_avsync.so
+lib/libvt_custom.so
+lib/libvt_socketbind.so
+lib/libvtmal.so
 
 # Sensors
 bin/akmd09911

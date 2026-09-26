@@ -4,3 +4,4 @@ type mal_socket, file_type;
 type volte_imcb_socket, file_type;
 type volte_stack_socket, file_type;
 type volte_ua_socket, file_type;
+type vtservice_socket, file_type;

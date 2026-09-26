@@ -23,3 +23,6 @@
 /dev/socket/volte_ut            u:object_r:volte_imcb_socket:s0
 /dev/socket/volte_stack         u:object_r:volte_stack_socket:s0
 /dev/socket/volte_ua            u:object_r:volte_ua_socket:s0
+/system/bin/vtservice           u:object_r:vtservice_exec:s0
+/dev/socket/soc_vt_(stk|svc|tcv) u:object_r:vtservice_socket:s0
+/dev/socket/volte_vt            u:object_r:vtservice_socket:s0
