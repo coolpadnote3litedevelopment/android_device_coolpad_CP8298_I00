@@ -4,6 +4,15 @@ type volte_stack_exec, exec_type, file_type;
 init_daemon_domain(volte_stack)
 net_domain(volte_stack)
 
-allow volte_stack self:capability { setgid setuid };
+allow volte_stack self:capability { net_admin setgid setuid };
+allow volte_stack self:key_socket create_socket_perms;
+
+# IPsec policy for the IMS signalling
+file_type_auto_trans(volte_stack, system_data_file, ims_ipsec_data_file)
+allow volte_stack ims_ipsec_data_file:file create_file_perms;
 
 unix_socket_connect(volte_stack, volte_stack, volte_stack)
+
+# route setup helpers
+allow volte_stack shell_exec:file rx_file_perms;
+allow volte_stack toolbox_exec:file rx_file_perms;

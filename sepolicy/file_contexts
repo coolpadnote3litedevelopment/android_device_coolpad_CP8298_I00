@@ -26,3 +26,6 @@
 /system/bin/vtservice           u:object_r:vtservice_exec:s0
 /dev/socket/soc_vt_(stk|svc|tcv) u:object_r:vtservice_socket:s0
 /dev/socket/volte_vt            u:object_r:vtservice_socket:s0
+/data/setkey\.conf              u:object_r:ims_ipsec_data_file:s0
+/data/setkey_bak\.conf          u:object_r:ims_ipsec_data_file:s0
+/data/setkey_latest\.conf       u:object_r:ims_ipsec_data_file:s0
