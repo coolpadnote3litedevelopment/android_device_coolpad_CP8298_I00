@@ -4,6 +4,7 @@ type mtkmal_exec, exec_type, file_type;
 init_daemon_domain(mtkmal)
 
 allow mtkmal self:capability setuid;
+allow mtkmal self:capability2 wake_alarm;
 allow mtkmal devpts:chr_file setattr;
 
 allow mtkmal radio_device:dir rw_dir_perms;
