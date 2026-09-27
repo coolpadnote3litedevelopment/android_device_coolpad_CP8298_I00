@@ -195,7 +195,7 @@ lib64/volte_imsm.so
 -priv-app/ImsService/ImsService.apk|f8b5fd233c3ff4c89445dd8a03929f7151ec0064
 
 # Media
-lib/hw/audio.primary.mt6735.so
+lib/hw/audio.primary.mt6735.so:lib/hw/audio.vendor.mt6735.so
 lib/libaudio-resampler.so
 lib/libaudiocompensationfilter.so
 lib/libaudiocomponentengine.so
