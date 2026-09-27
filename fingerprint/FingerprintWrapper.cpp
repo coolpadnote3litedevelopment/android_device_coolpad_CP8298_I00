@@ -130,7 +130,7 @@ static int authenticate(struct fingerprint_device *dev, uint64_t operation_id, u
 static int device_close(hw_device_t *hw_device)
 {
     device_t *device = (device_t *) hw_device;
-    int rv = device->base.common.close(device->vendor.hw_device);
+    int rv = device->vendor.hw_device->close(device->vendor.hw_device);
     free(device);
     return rv;
 }
