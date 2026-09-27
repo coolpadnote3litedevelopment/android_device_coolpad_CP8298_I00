@@ -217,14 +217,22 @@ static int preview_enqueue_buffer(struct preview_stream_ops *w, buffer_handle_t 
 {
     struct preview_window *p = to_preview(w);
 
-    return p->window->enqueue_buffer(p->window, real_handle(p, buffer));
+    buffer_handle_t *handle = real_handle(p, buffer);
+
+    if (!handle)
+        return 0;
+    return p->window->enqueue_buffer(p->window, handle);
 }
 
 static int preview_cancel_buffer(struct preview_stream_ops *w, buffer_handle_t *buffer)
 {
     struct preview_window *p = to_preview(w);
 
-    return p->window->cancel_buffer(p->window, real_handle(p, buffer));
+    buffer_handle_t *handle = real_handle(p, buffer);
+
+    if (!handle)
+        return 0;
+    return p->window->cancel_buffer(p->window, handle);
 }
 
 static int preview_set_buffer_count(struct preview_stream_ops *w, int count)
@@ -280,7 +288,11 @@ static int preview_lock_buffer(struct preview_stream_ops *w, buffer_handle_t *bu
 {
     struct preview_window *p = to_preview(w);
 
-    return p->window->lock_buffer(p->window, real_handle(p, buffer));
+    buffer_handle_t *handle = real_handle(p, buffer);
+
+    if (!handle)
+        return 0;
+    return p->window->lock_buffer(p->window, handle);
 }
 
 static int preview_set_timestamp(struct preview_stream_ops *w, int64_t timestamp)
@@ -293,14 +305,19 @@ static int preview_set_timestamp(struct preview_stream_ops *w, int64_t timestamp
 static int wrapper_set_preview_window(struct camera_device *dev,
         struct preview_stream_ops *window)
 {
+    int i;
+
     /*
-     * The display thread still cancels its buffers after the window is
-     * cleared, so keep the old mapping until a new window arrives.
+     * The Oreo HAL forgets its buffers on every window change, but the MTK
+     * display thread still cancels the ones it holds afterwards. Keep the
+     * ANativeWindowBuffers around and only forget which handle they carried.
      */
+    for (i = 0; i < MAX_PREVIEW_BUFFERS; i++)
+        preview.buffers[i].handle = NULL;
+
     if (!window)
         return vendor_set_preview_window(dev, NULL);
 
-    memset(&preview, 0, sizeof(preview));
     preview.window = window;
     preview.ops.dequeue_buffer = preview_dequeue_buffer;
     preview.ops.enqueue_buffer = preview_enqueue_buffer;
