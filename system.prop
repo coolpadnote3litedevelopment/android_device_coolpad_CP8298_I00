@@ -3,6 +3,7 @@ ro.telephony.default_network=9
 
 # IMS
 persist.mtk.volte.enable=1
+persist.dbg.volte_avail_ovr=1
 persist.mtk_dynamic_ims_switch=0
 persist.radio.mtk_dsbp_support=1
 ro.mtk_ims_support=1
