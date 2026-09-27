@@ -293,10 +293,14 @@ static int preview_set_timestamp(struct preview_stream_ops *w, int64_t timestamp
 static int wrapper_set_preview_window(struct camera_device *dev,
         struct preview_stream_ops *window)
 {
-    memset(&preview, 0, sizeof(preview));
+    /*
+     * The display thread still cancels its buffers after the window is
+     * cleared, so keep the old mapping until a new window arrives.
+     */
     if (!window)
         return vendor_set_preview_window(dev, NULL);
 
+    memset(&preview, 0, sizeof(preview));
     preview.window = window;
     preview.ops.dequeue_buffer = preview_dequeue_buffer;
     preview.ops.enqueue_buffer = preview_enqueue_buffer;
