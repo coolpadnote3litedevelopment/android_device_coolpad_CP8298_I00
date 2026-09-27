@@ -14,17 +14,12 @@
  * limitations under the License.
  */
 
-/*
- * Coolpad's HAL1 set_callbacks takes an ArcSoft display callback between
- * get_memory and the cookie. Pass NULL there so the HAL skips it and gets
- * the real cookie.
- */
-
 #define LOG_TAG "CameraWrapper"
 
 #include <errno.h>
 #include <pthread.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 #include <cutils/log.h>
 #include <hardware/camera.h>
@@ -35,18 +30,93 @@ typedef void (*vendor_set_callbacks_t)(struct camera_device *dev,
         camera_data_timestamp_callback data_cb_timestamp,
         camera_request_memory get_memory, void *arc_display_cb, void *user);
 
+struct notify_msg {
+    struct notify_msg *next;
+    camera_notify_callback cb;
+    int32_t msg_type;
+    int32_t ext1;
+    int32_t ext2;
+    void *user;
+};
+
 static camera_module_t *vendor_module;
 static camera_device_ops_t wrapper_ops;
 static vendor_set_callbacks_t vendor_set_callbacks;
 static pthread_mutex_t ops_lock = PTHREAD_MUTEX_INITIALIZER;
+
+static camera_notify_callback client_notify_cb;
+static pthread_mutex_t notify_lock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t notify_cond = PTHREAD_COND_INITIALIZER;
+static struct notify_msg *notify_head, *notify_tail;
+static pthread_t notify_thread;
+static int notify_thread_started;
+
+static void *notify_loop(void *arg __unused)
+{
+    struct notify_msg *m;
+
+    for (;;) {
+        pthread_mutex_lock(&notify_lock);
+        while (!notify_head)
+            pthread_cond_wait(&notify_cond, &notify_lock);
+        m = notify_head;
+        notify_head = m->next;
+        if (!notify_head)
+            notify_tail = NULL;
+        pthread_mutex_unlock(&notify_lock);
+
+        m->cb(m->msg_type, m->ext1, m->ext2, m->user);
+        free(m);
+    }
+
+    return NULL;
+}
+
+static void wrapper_notify_cb(int32_t msg_type, int32_t ext1, int32_t ext2,
+        void *user)
+{
+    struct notify_msg *m;
+    camera_notify_callback cb = client_notify_cb;
+
+    if (!cb)
+        return;
+
+    m = notify_thread_started ? malloc(sizeof(*m)) : NULL;
+    if (!m) {
+        cb(msg_type, ext1, ext2, user);
+        return;
+    }
+    m->next = NULL;
+    m->cb = cb;
+    m->msg_type = msg_type;
+    m->ext1 = ext1;
+    m->ext2 = ext2;
+    m->user = user;
+
+    pthread_mutex_lock(&notify_lock);
+    if (notify_tail)
+        notify_tail->next = m;
+    else
+        notify_head = m;
+    notify_tail = m;
+    pthread_cond_signal(&notify_cond);
+    pthread_mutex_unlock(&notify_lock);
+}
 
 static void wrapper_set_callbacks(struct camera_device *dev,
         camera_notify_callback notify_cb, camera_data_callback data_cb,
         camera_data_timestamp_callback data_cb_timestamp,
         camera_request_memory get_memory, void *user)
 {
-    vendor_set_callbacks(dev, notify_cb, data_cb, data_cb_timestamp,
-            get_memory, NULL, user);
+    pthread_mutex_lock(&notify_lock);
+    client_notify_cb = notify_cb;
+    if (!notify_thread_started &&
+            !pthread_create(&notify_thread, NULL, notify_loop, NULL))
+        notify_thread_started = 1;
+    pthread_mutex_unlock(&notify_lock);
+
+    vendor_set_callbacks(dev, notify_cb ? wrapper_notify_cb : NULL, data_cb,
+            data_cb_timestamp, get_memory, NULL, user);
 }
 
 static void wrap_device(hw_device_t *device)
