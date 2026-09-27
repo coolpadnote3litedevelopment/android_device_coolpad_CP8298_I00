@@ -17,3 +17,6 @@ unix_socket_connect(volte_stack, volte_stack, volte_stack)
 allow volte_stack shell_exec:file rx_file_perms;
 allow volte_stack toolbox_exec:file rx_file_perms;
 allow volte_stack system_data_file:dir remove_name;
+
+# The linker stats every LD_SHIM_LIBS target in every process.
+dontaudit domain { mtkmal_exec ril-daemon-mtk_exec volte_stack_exec volte_ua_exec }:file getattr;
