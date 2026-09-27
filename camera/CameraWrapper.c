@@ -20,15 +20,38 @@
 #include <pthread.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <cutils/log.h>
 #include <hardware/camera.h>
 #include <hardware/hardware.h>
+#include <nativebase/nativebase.h>
 
 typedef void (*vendor_set_callbacks_t)(struct camera_device *dev,
         camera_notify_callback notify_cb, camera_data_callback data_cb,
         camera_data_timestamp_callback data_cb_timestamp,
         camera_request_memory get_memory, void *arc_display_cb, void *user);
+
+#define MAX_PREVIEW_BUFFERS 32
+
+/*
+ * The M libcam.client takes every preview buffer_handle_t as the handle
+ * member of an ANativeWindowBuffer and references it through its base.
+ */
+struct preview_buffer {
+    ANativeWindowBuffer anb;
+    buffer_handle_t *handle;
+};
+
+struct preview_window {
+    preview_stream_ops_t ops;
+    preview_stream_ops_t *window;
+    int width;
+    int height;
+    int format;
+    int usage;
+    struct preview_buffer buffers[MAX_PREVIEW_BUFFERS];
+};
 
 struct notify_msg {
     struct notify_msg *next;
@@ -42,6 +65,9 @@ struct notify_msg {
 static camera_module_t *vendor_module;
 static camera_device_ops_t wrapper_ops;
 static vendor_set_callbacks_t vendor_set_callbacks;
+static int (*vendor_set_preview_window)(struct camera_device *dev,
+        struct preview_stream_ops *window);
+static struct preview_window preview;
 static pthread_mutex_t ops_lock = PTHREAD_MUTEX_INITIALIZER;
 
 static camera_notify_callback client_notify_cb;
@@ -129,6 +155,163 @@ static void wrapper_set_callbacks(struct camera_device *dev,
             data_cb_timestamp, get_memory ? wrapper_get_memory : NULL, NULL, user);
 }
 
+static void anb_ref(struct android_native_base_t *base __unused)
+{
+}
+
+static struct preview_window *to_preview(struct preview_stream_ops *w)
+{
+    return (struct preview_window *)w;
+}
+
+static buffer_handle_t *real_handle(struct preview_window *p, buffer_handle_t *buffer)
+{
+    struct preview_buffer *b;
+
+    if (buffer < &p->buffers[0].anb.handle ||
+            buffer > &p->buffers[MAX_PREVIEW_BUFFERS - 1].anb.handle)
+        return buffer;
+    b = (struct preview_buffer *)((char *)buffer - offsetof(struct preview_buffer, anb.handle));
+    return b->handle;
+}
+
+static int preview_dequeue_buffer(struct preview_stream_ops *w,
+        buffer_handle_t **buffer, int *stride)
+{
+    struct preview_window *p = to_preview(w);
+    struct preview_buffer *b = NULL;
+    int i, ret;
+
+    ret = p->window->dequeue_buffer(p->window, buffer, stride);
+    if (ret)
+        return ret;
+
+    for (i = 0; i < MAX_PREVIEW_BUFFERS; i++) {
+        if (p->buffers[i].handle == *buffer || !p->buffers[i].handle) {
+            b = &p->buffers[i];
+            break;
+        }
+    }
+    if (!b) {
+        ALOGE("%s: out of preview buffer slots", __func__);
+        p->window->cancel_buffer(p->window, *buffer);
+        return -ENOMEM;
+    }
+
+    b->handle = *buffer;
+    b->anb.common.magic = ANDROID_NATIVE_BUFFER_MAGIC;
+    b->anb.common.version = sizeof(ANativeWindowBuffer);
+    b->anb.common.incRef = anb_ref;
+    b->anb.common.decRef = anb_ref;
+    b->anb.width = p->width;
+    b->anb.height = p->height;
+    b->anb.stride = *stride;
+    b->anb.format = p->format;
+    b->anb.usage = p->usage;
+    b->anb.handle = **buffer;
+    *buffer = &b->anb.handle;
+    return 0;
+}
+
+static int preview_enqueue_buffer(struct preview_stream_ops *w, buffer_handle_t *buffer)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->enqueue_buffer(p->window, real_handle(p, buffer));
+}
+
+static int preview_cancel_buffer(struct preview_stream_ops *w, buffer_handle_t *buffer)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->cancel_buffer(p->window, real_handle(p, buffer));
+}
+
+static int preview_set_buffer_count(struct preview_stream_ops *w, int count)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->set_buffer_count(p->window, count);
+}
+
+static int preview_set_buffers_geometry(struct preview_stream_ops *w,
+        int width, int height, int format)
+{
+    struct preview_window *p = to_preview(w);
+
+    p->width = width;
+    p->height = height;
+    p->format = format;
+    return p->window->set_buffers_geometry(p->window, width, height, format);
+}
+
+static int preview_set_crop(struct preview_stream_ops *w,
+        int left, int top, int right, int bottom)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->set_crop(p->window, left, top, right, bottom);
+}
+
+static int preview_set_usage(struct preview_stream_ops *w, int usage)
+{
+    struct preview_window *p = to_preview(w);
+
+    p->usage = usage;
+    return p->window->set_usage(p->window, usage);
+}
+
+static int preview_set_swap_interval(struct preview_stream_ops *w, int interval)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->set_swap_interval(p->window, interval);
+}
+
+static int preview_get_min_undequeued_buffer_count(const struct preview_stream_ops *w,
+        int *count)
+{
+    struct preview_window *p = to_preview((struct preview_stream_ops *)w);
+
+    return p->window->get_min_undequeued_buffer_count(p->window, count);
+}
+
+static int preview_lock_buffer(struct preview_stream_ops *w, buffer_handle_t *buffer)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->lock_buffer(p->window, real_handle(p, buffer));
+}
+
+static int preview_set_timestamp(struct preview_stream_ops *w, int64_t timestamp)
+{
+    struct preview_window *p = to_preview(w);
+
+    return p->window->set_timestamp(p->window, timestamp);
+}
+
+static int wrapper_set_preview_window(struct camera_device *dev,
+        struct preview_stream_ops *window)
+{
+    memset(&preview, 0, sizeof(preview));
+    if (!window)
+        return vendor_set_preview_window(dev, NULL);
+
+    preview.window = window;
+    preview.ops.dequeue_buffer = preview_dequeue_buffer;
+    preview.ops.enqueue_buffer = preview_enqueue_buffer;
+    preview.ops.cancel_buffer = preview_cancel_buffer;
+    preview.ops.set_buffer_count = preview_set_buffer_count;
+    preview.ops.set_buffers_geometry = preview_set_buffers_geometry;
+    preview.ops.set_crop = preview_set_crop;
+    preview.ops.set_usage = preview_set_usage;
+    preview.ops.set_swap_interval = preview_set_swap_interval;
+    preview.ops.get_min_undequeued_buffer_count = preview_get_min_undequeued_buffer_count;
+    preview.ops.lock_buffer = preview_lock_buffer;
+    preview.ops.set_timestamp = preview_set_timestamp;
+    return vendor_set_preview_window(dev, &preview.ops);
+}
+
 static void wrap_device(hw_device_t *device)
 {
     camera_device_t *camera = (camera_device_t *)device;
@@ -141,6 +324,8 @@ static void wrap_device(hw_device_t *device)
         wrapper_ops = *camera->ops;
         vendor_set_callbacks = (vendor_set_callbacks_t)camera->ops->set_callbacks;
         wrapper_ops.set_callbacks = wrapper_set_callbacks;
+        vendor_set_preview_window = camera->ops->set_preview_window;
+        wrapper_ops.set_preview_window = wrapper_set_preview_window;
     }
     pthread_mutex_unlock(&ops_lock);
 

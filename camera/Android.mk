@@ -21,6 +21,8 @@ LOCAL_SRC_FILES := CameraWrapper.c
 LOCAL_C_INCLUDES := \
     system/media/camera/include
 
+LOCAL_HEADER_LIBRARIES := libnativebase_headers
+
 LOCAL_SHARED_LIBRARIES := \
     libhardware \
     liblog
