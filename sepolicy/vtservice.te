@@ -4,3 +4,8 @@ type vtservice_exec, exec_type, file_type;
 init_daemon_domain(vtservice)
 
 binder_use(vtservice)
+
+allow vtservice vtservice_service:service_manager add;
+
+file_type_auto_trans(vtservice, system_data_file, vtservice_data_file)
+allow vtservice system_data_file:dir remove_name;

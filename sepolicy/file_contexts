@@ -29,3 +29,4 @@
 /data/setkey\.conf              u:object_r:ims_ipsec_data_file:s0
 /data/setkey_bak\.conf          u:object_r:ims_ipsec_data_file:s0
 /data/setkey_latest\.conf       u:object_r:ims_ipsec_data_file:s0
+/data/vtservice\.cleanup\.server  u:object_r:vtservice_data_file:s0
