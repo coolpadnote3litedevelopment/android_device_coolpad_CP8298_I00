@@ -326,9 +326,9 @@ bin/memsicd3416x
 bin/msensord
 bin/orientationd
 bin/s62xd
-lib/hw/sensors.mt6735.so
+lib/hw/sensors.mt6735.so:lib/sensors.coolpad.so
 lib/libhwm.so
-lib64/hw/sensors.mt6735.so
+lib64/hw/sensors.mt6735.so:lib64/sensors.coolpad.so
 lib64/libhwm.so
 
 # Telephony
