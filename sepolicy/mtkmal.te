@@ -15,3 +15,7 @@ set_prop(mtkmal, radio_prop)
 unix_socket_connect(mtkmal, mal, mtkmal)
 unix_socket_connect(mtkmal, rild, ril-daemon-mtk)
 unix_socket_connect(mtkmal, volte_imcb, volte_imcb)
+
+get_prop(mtkmal, nvram_prop)
+allow mtkmal system_file:dir r_dir_perms;
+set_prop(mtkmal, ril_mux_report_case_prop)

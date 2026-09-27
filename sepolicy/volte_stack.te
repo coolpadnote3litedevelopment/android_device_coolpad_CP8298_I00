@@ -16,3 +16,4 @@ unix_socket_connect(volte_stack, volte_stack, volte_stack)
 # route setup helpers
 allow volte_stack shell_exec:file rx_file_perms;
 allow volte_stack toolbox_exec:file rx_file_perms;
+allow volte_stack system_data_file:dir remove_name;
