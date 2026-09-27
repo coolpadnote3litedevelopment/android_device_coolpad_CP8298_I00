@@ -292,14 +292,14 @@ bin/mobile_log_d
 bin/nvram_daemon
 lib/libcustom_nvram.so
 lib/libfs_mgr.so
-lib/libnvram.so
+-lib/libnvram.so
 lib/libnvram_daemon_callback.so
 lib/libnvram_platform.so
 lib/libnvram_sec.so
 lib/libnvramagentclient.so
 lib64/libcustom_nvram.so
 lib64/libfs_mgr.so
-lib64/libnvram.so
+-lib64/libnvram.so
 lib64/libnvram_daemon_callback.so
 lib64/libnvram_platform.so
 lib64/libnvram_sec.so
