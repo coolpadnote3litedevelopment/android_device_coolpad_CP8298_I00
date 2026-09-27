@@ -192,7 +192,7 @@ lib64/libmal_simmngr.so
 lib64/volte_imsm.so
 
 # ImsService - from mt6735-volte-fix
--priv-app/ImsService/ImsService.apk|c8db4f5d64462cd2e3555f52b52ff050f55a3210
+-priv-app/ImsService/ImsService.apk|f40b5b412be8aef33996eeb6083c665681bdffd4
 
 # Media
 lib/hw/audio.primary.mt6735.so:lib/hw/audio.vendor.mt6735.so
