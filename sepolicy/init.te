@@ -1,4 +1,9 @@
 allow init device:lnk_file create_file_perms;
 
 # Keep AT_SECURE off so the linker honours LD_SHIM_LIBS
-allow init vtservice:process noatsecure;
+allow init {
+    mtkmal
+    volte_stack
+    volte_ua
+    vtservice
+}:process noatsecure;
