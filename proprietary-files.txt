@@ -169,14 +169,9 @@ bin/mtkmal
 bin/volte_imcb
 bin/volte_stack
 bin/volte_ua
-bin/vtservice
 lib/libamr_wrap.so
 lib/libamrvt.so
 lib/libawb_wrap.so
-lib/libcomutils.so
-lib/libimsma.so
-lib/libimsma_rtp.so
-lib/libimsma_socketwrapper.so
 lib/libmal_datamngr.so
 lib/libmal_epdga.so
 lib/libmal_imsmngr.so
@@ -185,16 +180,6 @@ lib/libmal_nwmngr.so
 lib/libmal_rds.so
 lib/libmal_rilproxy.so
 lib/libmal_simmngr.so
-lib/libmtk_vt_service.so
-lib/libmtk_vt_swip.so
-lib/libmtk_vt_utils.so
-lib/libsink.so
-lib/libsource.so
-lib/libvcodec_cap.so
-lib/libvt_avsync.so
-lib/libvt_custom.so
-lib/libvt_socketbind.so
-lib/libvtmal.so
 lib/volte_imsm.so
 lib64/libmal_datamngr.so
 lib64/libmal_epdga.so
@@ -420,6 +405,24 @@ bin/mcDriverDaemon
 lib64/hw/libMcGatekeeper.so:lib64/hw/gatekeeper.mt6735.so
 lib64/hw/keystore.mt6735.so
 lib64/libMcClient.so
+
+# VT - from NE1_00WW_FIH-user 7.1.1 NMF26O 00WW_2_15H release-keys
+vendor/bin/vtservice:bin/vtservice|78e52beae05ee64b53dac1016b6f334d89fa58f6
+vendor/lib/libcomutils.so:lib/libcomutils.so|075fe843abd01062d18f386d96900bb9ad902fed
+vendor/lib/libimsma.so:lib/libimsma.so|10db05c4e35949f6323adddb81e5c56cf1a6e9f1
+vendor/lib/libimsma_rtp.so:lib/libimsma_rtp.so|9ceed1955af60cbb403fd0a6b41b9fc4e8667f6b
+vendor/lib/libimsma_socketwrapper.so:lib/libimsma_socketwrapper.so|1637a1bbc8ce9ad1533ca493c6a1381dfa6199dd
+vendor/lib/libmtk_vt_service.so:lib/libmtk_vt_service.so|3792b464a97a16f936506364256a9acdc26c549b
+vendor/lib/libmtk_vt_utils.so:lib/libmtk_vt_utils.so|3f316b3ce7a2c19cc998217ad0b1d5cd735cc4d8
+vendor/lib/libmtkcam_fwkutils.so:lib/libmtkcam_fwkutils.so|9cf1122545bb2950793e25d7b03e6b6250f00d54
+vendor/lib/libsink.so:lib/libsink.so|f2273fb09dd3027699eb0669517174c4e7db00a4
+vendor/lib/libsource.so:lib/libsource.so|45eaabfc5d136f2fb2006e74baa4cf82722337a1
+vendor/lib/libvcodec_cap.so:lib/libvcodec_cap.so|ef83fa87e82bc344416f17aaaeb858c2df2c9536
+vendor/lib/libvt_avsync.so:lib/libvt_avsync.so|2d0b90f8746bf926f75ee2817aef6dc3dd4521ca
+vendor/lib/libvt_custom.so:lib/libvt_custom.so|05afb7c041440cafb69ed9b3252e68b99d256b89
+vendor/lib/libvt_socketbind.so:lib/libvt_socketbind.so|8f299164f571b1d2732a1f0cb4802cd2134fbd78
+vendor/lib/libvtmal.so:lib/libvtmal.so|6b20a287a1d631caa6bd01e3d81483bf7f884d11
+vendor/lib/libmtk_vt_swip.so|89def4439a4d1d38fc045060cee4097076278ee5
 
 # Widevine
 vendor/lib/drm/libdrmwvmplugin.so
