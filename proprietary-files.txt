@@ -454,9 +454,7 @@ etc/firmware/mt6627/mt6627_fm_v4_patch.bin
 etc/firmware/mt6627/mt6627_fm_v5_coeff.bin
 etc/firmware/mt6627/mt6627_fm_v5_patch.bin
 etc/fmr/mt6627_fm_cust.cfg
-lib/libbluetooth_mtk.so
 lib/libbluetooth_mtk_pure.so
-lib/libbt-vendor.so
 lib/libfmcust.so
 lib64/libbluetooth_mtk_pure.so
 lib64/libfmcust.so
