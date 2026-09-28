@@ -16,3 +16,4 @@ set_prop(mobicore, debug_prop)
 allow mobicore proc:file r_file_perms;
 allow mobicore tmpfs:dir search;
 allow mobicore proc_stat:file r_file_perms;
+allow mobicore apk_data_file:dir search;
