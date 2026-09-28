@@ -111,12 +111,14 @@ lib64/libSonyIMX230PdafLibrary.so
 bin/pq
 lib/libblisrc.so
 lib/libblisrc32.so
+lib/libdpframework.so
 lib/libgas.so
 lib/libgui_ext.so
 lib/libpqservice.so
 lib/libsec_mem.so
 lib64/libblisrc.so
 lib64/libblisrc32.so
+lib64/libdpframework.so
 lib64/libgas.so
 lib64/libgui_ext.so
 lib64/libpq_cust.so
@@ -149,21 +151,15 @@ lib/android.hidl.base@1.0.so|c67dd8a5ce5ace7a7c7ece04921e9d2ca3f9f40f
 lib64/android.hidl.base@1.0.so|72c7c67a10751c89aff23ec9408cd7cf4df66893
 vendor/lib/egl/libGLES_mali.so|f8cf7d26732a6b84e8e3843cf4dbabf215110ed2
 vendor/lib/hw/gralloc.mt6737m.so:vendor/lib/hw/gralloc.mt6735.so|e931e7d63bd25754c82ace80ab38cf79962cad60
-vendor/lib/hw/hwcomposer.mt6735.so|ad02ade11819c1a4948f736e0001dc2f47c06882
 vendor/lib/libbwc.so:lib/libbwc.so|09c2eb7b16bde2dca7f3c5d9e8c7c038da72e8d5
 vendor/lib/libbwc.so|09c2eb7b16bde2dca7f3c5d9e8c7c038da72e8d5
-vendor/lib/libdpframework.so:lib/libdpframework.so|250f7f2fe96f7f901c5e2cd7e421135682d41fc6
-vendor/lib/libdpframework.so|250f7f2fe96f7f901c5e2cd7e421135682d41fc6
 vendor/lib/libged.so:lib/libged.so|ce5f338898d45146bffada0c801ed9746f20163b
 vendor/lib/libged.so|ce5f338898d45146bffada0c801ed9746f20163b
-vendor/lib/libgpu_aux.so:lib/libgpu_aux.so|7864c161c3c69827e3240b45f244a4a631155afb
-vendor/lib/libgpu_aux.so|7864c161c3c69827e3240b45f244a4a631155afb
 vendor/lib/libgralloc_extra.so:lib/libgralloc_extra.so|11035ede2c5e05213895fa931f34bf0706eede45
 vendor/lib/libgralloc_extra.so|11035ede2c5e05213895fa931f34bf0706eede45
 vendor/lib/libion_mtk.so:lib/libion_mtk.so|8bc86d2b8011b3b20acdd77908ea694e2dd3ff6d
 vendor/lib/libion_mtk.so|8bc86d2b8011b3b20acdd77908ea694e2dd3ff6d
 vendor/lib/libion_ulit.so|9d44868ffc243155c4160b217350f77d5cc10531
-vendor/lib/libm4u.so:lib/libm4u.so|a6c1207f32bded57b3032a354e678deb7270efb8
 vendor/lib/libm4u.so|a6c1207f32bded57b3032a354e678deb7270efb8
 vendor/lib/libpq_prot.so:lib/libpq_prot.so|1ac88199d1c8dc463931f614dab5b81088579643
 vendor/lib/libpq_prot.so|1ac88199d1c8dc463931f614dab5b81088579643
@@ -173,15 +169,10 @@ vendor/lib/vendor.mediatek.hardware.power@1.1_vendor.so|d6a79566935938189d7a1739
 vendor/lib/vendor.mediatek.hardware.pq@2.0_vendor.so|3c83e753ce974ab59ac1233e77d8dc0033c970a3
 vendor/lib64/egl/libGLES_mali.so|1fd1878d5104dcd058ececf63f9191e08bfc1e3a
 vendor/lib64/hw/gralloc.mt6737m.so:vendor/lib64/hw/gralloc.mt6735.so|ccd84bfda1c25b58f92a5d777ccf0e305b798cb9
-vendor/lib64/hw/hwcomposer.mt6735.so|fb1a9ee15c89ea0c04e91bfe31918767db83a600
 vendor/lib64/libbwc.so:lib64/libbwc.so|ce2470fbec3058807de017571861c6d6271f628f
 vendor/lib64/libbwc.so|ce2470fbec3058807de017571861c6d6271f628f
-vendor/lib64/libdpframework.so:lib64/libdpframework.so|51e5d0c1c724c0eb46262b5f16ce0426f7143cf6
-vendor/lib64/libdpframework.so|51e5d0c1c724c0eb46262b5f16ce0426f7143cf6
 vendor/lib64/libged.so:lib64/libged.so|40b858f5c65dc6a8cb2ca5cf1634d6eb55681617
 vendor/lib64/libged.so|40b858f5c65dc6a8cb2ca5cf1634d6eb55681617
-vendor/lib64/libgpu_aux.so:lib64/libgpu_aux.so|ea8b4bf8b9855c8e6c8cf80de2f724c21789b02a
-vendor/lib64/libgpu_aux.so|ea8b4bf8b9855c8e6c8cf80de2f724c21789b02a
 vendor/lib64/libgralloc_extra.so:lib64/libgralloc_extra.so|ad52c9a2fc3283f14d4b678ef009b03f4fa2b7ff
 vendor/lib64/libgralloc_extra.so|ad52c9a2fc3283f14d4b678ef009b03f4fa2b7ff
 vendor/lib64/libion_mtk.so:lib64/libion_mtk.so|547b47b81e96539a447dd8e1cdc7d03e6af686ad
@@ -195,6 +186,16 @@ vendor/lib64/libui_ext.so:lib64/libui_ext.so|80c35c327b90c8f9a17656e9a11d4b3cee6
 vendor/lib64/libui_ext.so|80c35c327b90c8f9a17656e9a11d4b3cee606796
 vendor/lib64/vendor.mediatek.hardware.power@1.1_vendor.so|ac1dfffbdedd21abd18fab7a6c03b0904e60717d
 vendor/lib64/vendor.mediatek.hardware.pq@2.0_vendor.so|daff87849e47341bf781227a8cb1228ab7d2e75d
+
+# Graphics - from Nokia 3 8.0.0 O00623 00WW_3_380, patched to load libdpfrmwork_o.so
+vendor/lib/hw/hwcomposer.mt6735.so|40fa72b7e62812f048b6ebb0b0e5dded95333a0d
+vendor/lib/libdpframework.so:vendor/lib/libdpfrmwork_o.so|38bf1027bc6f6cea482084e8311b99d35738027b
+vendor/lib/libgpu_aux.so:lib/libgpu_aux.so|6721a07573dec874de1ad75b682bbfb279be0509
+vendor/lib/libgpu_aux.so|6721a07573dec874de1ad75b682bbfb279be0509
+vendor/lib64/hw/hwcomposer.mt6735.so|64e79cb3f1af85042f0ec4181fa717b2365b4dae
+vendor/lib64/libdpframework.so:vendor/lib64/libdpfrmwork_o.so|39381993c1da1c375efda6421867f50f61c6a3de
+vendor/lib64/libgpu_aux.so:lib64/libgpu_aux.so|ca99d6faba065620f713ec6654141323a02a8216
+vendor/lib64/libgpu_aux.so|ca99d6faba065620f713ec6654141323a02a8216
 
 # IMS
 bin/mtkmal
@@ -241,6 +242,7 @@ lib/libh264enc_sb.ca7.so
 lib/libHEVCdec_sa.ca7.android.so
 lib/liblic_divx.so
 lib/liblic_s263.so
+lib/libm4u.so
 lib/libmal.so
 lib/libmatv_cust.so
 lib/libmdfx.so
