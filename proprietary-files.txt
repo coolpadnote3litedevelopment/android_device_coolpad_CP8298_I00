@@ -401,7 +401,7 @@ app/mcRegistry/98fb95bcb4bf42d26473eae48690d7ea.tlbin
 app/mcRegistry/e97c270ea5c44c58bcd3384a2fa2539e.tlbin
 bin/mcDriverDaemon
 lib64/hw/libMcGatekeeper.so:lib64/hw/gatekeeper.mt6735.so
-lib64/hw/keystore.mt6735.so
+lib64/hw/keystore.mt6735.so:lib64/hw/keystore.vendor.mt6735.so
 lib64/libMcClient.so
 
 # VT - from NE1_00WW_FIH-user 7.1.1 NMF26O 00WW_2_15H release-keys

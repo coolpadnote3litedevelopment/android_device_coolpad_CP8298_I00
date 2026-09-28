@@ -58,6 +58,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayouts/mtk-tpd.kl:system/usr/keylayout/mtk-tpd.kl
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    keystore.mt6735
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
