@@ -197,6 +197,9 @@ vendor/lib64/libdpframework.so:vendor/lib64/libdpfrmwork_o.so|39381993c1da1c375e
 vendor/lib64/libgpu_aux.so:lib64/libgpu_aux.so|ca99d6faba065620f713ec6654141323a02a8216
 vendor/lib64/libgpu_aux.so|ca99d6faba065620f713ec6654141323a02a8216
 
+# Video - patched to map the camera buffer it is handed on every frame
+lib/libMtkOmxVenc.so|ef4f03bce3270c6a2b74afd527fc8ffd7422b5a7
+
 # IMS
 bin/mtkmal
 bin/volte_imcb
@@ -258,7 +261,6 @@ lib/libMtkH264SecVdecTLCLib.so
 lib/libMtkH264SecVencTLCLib.so
 lib/libMtkOmxCore.so
 lib/libMtkOmxVdecEx.so
-lib/libMtkOmxVenc.so
 lib/libmtkshifter.so
 lib/libspeech_enh_lib.so
 lib/libstagefrighthw.so
